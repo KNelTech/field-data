@@ -58,6 +58,9 @@ body{font-family:'DM Sans',sans-serif;background:#0f1114;color:#e8eaed;min-heigh
 .spin{width:40px;height:40px;border:3px solid #333842;border-top-color:#3b82f6;border-radius:50%;animation:sp .8s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
 
+.clear-btn{background:none;border:1px solid #333842;border-radius:7px;color:#9aa0ab;font-family:'DM Sans',sans-serif;font-size:12px;padding:6px 12px;cursor:pointer}
+.clear-btn:hover{border-color:#ef4444;color:#ef4444}
+
 @media(max-width:500px){
   .entry{flex-direction:column;align-items:stretch;gap:6px;padding-right:30px}
   .entry .tsel{width:100%}
@@ -72,6 +75,7 @@ body{font-family:'DM Sans',sans-serif;background:#0f1114;color:#e8eaed;min-heigh
     <div class="logo">C</div>
     <div><div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#3b82f6">CONCARE</div><h1>Tool Tracker</h1><div class="date" id="dateDisp"></div></div>
   </div>
+  <button class="clear-btn" onclick="clearAll()">Clear All</button>
 </div>
 
 <div class="main">
@@ -96,9 +100,12 @@ let usedNames = [];
 
 function id() { return 'x' + (uid++); }
 
-function toolOpts() {
+function toolOpts(selected) {
   let h = '<option value="">Select tool...</option>';
-  TOOLS.forEach(t => { h += `<option value="${t.replace(/"/g,'&quot;')}">${t}</option>`; });
+  TOOLS.forEach(t => {
+    const s = t === selected ? ' selected' : '';
+    h += `<option value="${t.replace(/"/g,'&quot;')}"${s}>${t}</option>`;
+  });
   return h;
 }
 
@@ -112,17 +119,18 @@ function refreshDropdown() {
   });
 }
 
-function addPerson() {
-  const sel = document.getElementById('addSel');
-  const name = sel.value;
+function addPerson(data) {
+  const name = data ? data.name : document.getElementById('addSel').value;
   if (!name) return;
 
   usedNames.push(name);
   const cardId = id();
-  const entryId = id();
 
   // Close all existing cards
   document.querySelectorAll('.card').forEach(c => c.classList.remove('open'));
+
+  const entries = data && data.entries ? data.entries : [{}];
+  const entriesHtml = entries.map(e => makeEntry(id(), e.tool, e.t1, e.t2)).join('');
 
   const card = document.createElement('div');
   card.className = 'card open';
@@ -138,7 +146,7 @@ function addPerson() {
     </div>
     <div class="card-body">
       <div class="entries" id="entries-${cardId}">
-        ${makeEntry(entryId)}
+        ${entriesHtml}
       </div>
       <button class="add-entry" onclick="addEntry('${cardId}')">+ Add tool entry</button>
       <button class="del-person" data-name="${name}" onclick="removePerson('${cardId}',this.dataset.name)">Remove ${name.split(' ')[0]}</button>
@@ -152,15 +160,16 @@ function addPerson() {
 
   document.getElementById('cards').appendChild(card);
   refreshDropdown();
+  if (!data) saveState();
 }
 
-function makeEntry(eid) {
+function makeEntry(eid, tool, t1, t2) {
   return `<div class="entry" id="${eid}">
-    <select class="tsel">${toolOpts()}</select>
+    <select class="tsel">${toolOpts(tool)}</select>
     <div class="tg">
-      <input type="time">
+      <input type="time" value="${t1 || ''}">
       <span>→</span>
-      <input type="time">
+      <input type="time" value="${t2 || ''}">
     </div>
     <button class="xbtn" onclick="removeEntry('${eid}')">×</button>
   </div>`;
@@ -171,6 +180,7 @@ function addEntry(cardId) {
   if (!container) return;
   if (container.children.length >= 20) { toast('Max 20 entries', true); return; }
   container.insertAdjacentHTML('beforeend', makeEntry(id()));
+  saveState();
 }
 
 function removeEntry(eid) {
@@ -182,6 +192,7 @@ function removeEntry(eid) {
   if (container.children.length === 0) {
     container.insertAdjacentHTML('beforeend', makeEntry(id()));
   }
+  saveState();
 }
 
 function removePerson(cardId, name) {
@@ -190,6 +201,7 @@ function removePerson(cardId, name) {
   if (card) card.remove();
   usedNames = usedNames.filter(n => n !== name);
   refreshDropdown();
+  saveState();
 }
 
 function toast(msg, err) {
@@ -262,7 +274,8 @@ async function doSubmit() {
   const btn = document.getElementById('subBtn');
   btn.disabled = true;
   document.getElementById('ov').classList.add('show');
-  const ds = new Date().toLocaleDateString('en-US');
+  //const ds = new Date().toLocaleDateString('en-US');
+  const ds = new Date().toISOString().split('T')[0];
 
   try {
     if (typeof emailjs === 'undefined' || !emailjs.send) {
@@ -275,6 +288,10 @@ async function doSubmit() {
     });
     document.getElementById('ov').classList.remove('show');
     toast('✓ Report sent!');
+    document.getElementById('cards').innerHTML = '';
+    usedNames = [];
+    localStorage.removeItem('concare_tool_data');
+    refreshDropdown();
     btn.disabled = false;
   } catch(e) {
     document.getElementById('ov').classList.remove('show');
@@ -285,9 +302,51 @@ async function doSubmit() {
   }
 }
 
-// Clear red validation border when user fills in a time
+// ── Persistence ──
+function saveState() {
+  const data = [];
+  document.querySelectorAll('.card').forEach(card => {
+    const name = card.querySelector('.card-name').textContent;
+    const entries = [];
+    card.querySelectorAll('.entry').forEach(row => {
+      const tool = row.querySelector('.tsel').value;
+      const times = row.querySelectorAll('input[type="time"]');
+      entries.push({ tool: tool || '', t1: times[0].value || '', t2: times[1].value || '' });
+    });
+    data.push({ name, entries });
+  });
+  localStorage.setItem('concare_tool_data', JSON.stringify(data));
+}
+
+function loadState() {
+  try {
+    const saved = localStorage.getItem('concare_tool_data');
+    if (!saved) return;
+    JSON.parse(saved).forEach(person => addPerson(person));
+  } catch(e) {
+    localStorage.removeItem('concare_tool_data');
+  }
+}
+
+function clearAll() {
+  if (!document.querySelectorAll('.card').length) return;
+  if (!confirm('Clear all entries and start over?')) return;
+  document.getElementById('cards').innerHTML = '';
+  usedNames = [];
+  localStorage.removeItem('concare_tool_data');
+  refreshDropdown();
+  toast('All cleared');
+}
+
+// Auto-save on any change inside cards
 document.addEventListener('input', e => {
-  if (e.target.type === 'time' && e.target.value) e.target.style.borderColor = '';
+  if (e.target.type === 'time') {
+    if (e.target.value) e.target.style.borderColor = '';
+    saveState();
+  }
+});
+document.addEventListener('change', e => {
+  if (e.target.closest('.card')) saveState();
 });
 
 // Init
@@ -298,6 +357,7 @@ if (typeof emailjs !== 'undefined') {
   console.error('EmailJS library not loaded — check network/CDN');
 }
 refreshDropdown();
+loadState();
 </script>
 </body>
 </html>
