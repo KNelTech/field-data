@@ -268,7 +268,7 @@ async function doSubmit() {
     if (typeof emailjs === 'undefined' || !emailjs.send) {
       throw new Error('EmailJS library failed to load');
     }
-    await emailjs.send("service_concare", "template_concare", {
+    await emailjs.send("service_ConcareKND", "template_concare", {
       to_email: "kodi.nelson@concare.com",
       subject: 'Tool Report — ' + ds,
       message: report
