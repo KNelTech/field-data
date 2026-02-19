@@ -94,6 +94,7 @@ body{font-family:'DM Sans',sans-serif;background:#0f1114;color:#e8eaed;min-heigh
 <script>
 const NAMES=["Alejandro Rodriguez","Alex Alfredo Ugsha-Otto","Alexander Moro","Angel G Godoy","Artur Gurgul","Charlie Perez","Jesus Rodriguez","Jose Colon","Jose A Cortes","Jose M Cuyachamin-Espin","Manual Ivan Ugsha-Tigasi","Marcos Martinez","Martin Jimenez","Omar Duran","Oronzo Mendrano","Saul Corona","Wilfredo David Guaman-Ortega"];
 const TOOLS=["18V Blower 2824-20","18V Rapid Charger","18V Rotary Hammer Set RHS 2912-22","18V Vacuum 0970-20",'4" Cut-off-Grinder','4" Makita Grinder','4.5" Angle Grinder','5" Makita Grinder','5" Orbital Sander',"Angle Grinder 2881-20","Battery 5.1 AH (2 pcs)","Caulking Gun","Charger M12-M18 4859-1812","Chipping Hammer","Circular Saw 2730-20","Clarke Buffer","Cordless Drill 18V","Demolition Hammer","Festool Sander","Hammer Drill","Hammer Drill 2904-20","Hilti DGH 130 Grinder","Impact Drive 2953-20","Laser Pacific PLS360","M12 Laser Set 3632-21","Makita Die Grinder",'Metabo 7" Crack Saw','Metabo 7" Grinder',"Milwaukee Combo Kit","Milwaukee Mixer","Packout 2 Drawer Box","Packout Base","Saw Zall 2821-20","Stone Grinder",'Wood Saw 7"'];
+const EMAIL_RECIPIENTS = "christine.skudlarek@concare.com,erik.church@concare.com";
 
 let uid = 0;
 let usedNames = [];
@@ -282,9 +283,11 @@ async function doSubmit() {
       throw new Error('EmailJS library failed to load');
     }
     await emailjs.send("service_ConcareKND", "template_concare", {
-      to_email: "kodi.nelson@concare.com",
       subject: 'Tool Report — ' + ds,
-      message: report
+      message: report,
+      to_email: EMAIL_RECIPIENTS,
+      recipient: EMAIL_RECIPIENTS,
+      recipients: EMAIL_RECIPIENTS
     });
     document.getElementById('ov').classList.remove('show');
     toast('✓ Report sent!');
