@@ -1,0 +1,227 @@
+//this is the current array we have 
+
+const TOOLS=["18V Blower 2824-20","18V Rapid Charger","18V Rotary Hammer Set RHS 2912-22","18V Vacuum 0970-20",'4" Cut-off-Grinder','4" Makita Grinder','4.5" Angle Grinder','5" Makita Grinder','5" Orbital Sander',"Angle Grinder 2881-20","Battery 5.1 AH (2 pcs)","Bull Vacuum (Large)","Caulking Gun","Charger M12-M18 4859-1812","Chipping Hammer","Circular Saw 2730-20","Clarke Buffer","Cordless Drill 18V","Demolition Hammer","Festool Sander","Hammer Drill","Hammer Drill 2904-20","Hilti DGH 130 Grinder","Impact Drive 2953-20","Laser Pacific PLS360","M12 Laser Set 3632-21","Makita Die Grinder",'Metabo 7" Crack Saw','Metabo 7" Grinder',"Milwaukee Combo Kit","Milwaukee Mixer","Packout 2 Drawer Box","Packout Base","Saw Zall 2821-20","Shot Blaster","Stone Grinder",'Wood Saw 7"'];
+
+
+//this is the new list to add in alphabetical order to the javascript array
+
+TOOLS
+CHIPPING HAMMERS
+TEMPEST FAN
+TROWEL
+MORTAR MIX
+RIDING SCRUBBER
+DIAMATIC D780
+MORTAR MIXER
+POLISHER - FM1700
+SMALL TOOLS
+TEMPEST FAN
+SCAFFOLDING
+DIAMATIC 780 ULTRA
+SMALL TOOLS
+EQUIPMENT
+LARUE VACUUM
+HOVER TROWEL
+SM320
+
+DIAMATIC 780 PRO
+GENERATOR
+BLADES
+DOCK LEVELERS
+BURNISHER
+SCARIFIER
+SCARIFIER
+SCARIFIER
+Toyota Walkie Pallet
+Indoor air Quality Monitor System
+RAE Systems 3000 PID
+Steel Cards for Screed Box
+Scarifier
+Toyota Forklift Model 7FBEU20
+KwiKool Portable Air Conditioner & Duct Work
+2 - Model 700-065 Fans
+SkyJack Electric Scissorlift
+Toyota 7HBW23-53635 Electric Pallet Jack
+5 Hippo Mixerss
+Wall Sanders
+Electric Concrete Saw
+SEALBOSS JOINTMAS MACHINE
+HIGH VISCOSITY AGITATOR
+SDS MAX DEMO HAMMER
+MORTAR MIXER 5HP 3 PHASE
+BATTERY - FORK LIFT
+SDS MAX BOSCH HAMMER
+MAKITA 5" FLOOR GRINDER
+DEWALT 40V BLOWER
+GRACO PRO210ES - CONNECT STAND
+HOPPER
+
+Seal Boss Poly Urea Machine
+Ermator T18000 Vac
+#10 Ermator S26 Vacs 
+#10 Ermator S26 Vacs 
+Diamatic Grinder #780
+Baier BDN511 Diamond Channel cutter
+Vacuum SASE
+Pallet Jack
+Atlas Toyota Battery
+
+
+
+Marindus Co #48456 #7066 10in Scarifier
+SASE #247476 Bull Vac 1250
+Salare #7066 Air Scrubber
+Aramsco Diamatic UltraPro 21 inGrinder  #S4505576
+SASE #260725 Pre-Seperator
+Aramsco Ru-Vac Wet Vac #92806
+Insurance Auto Auctions/John Deere Gator
+Blast-Trac BDC-99HLG Shot Vaccum #1
+Blast-Trac BDC-99HLG Shot Vaccum#2
+Bull Vac 1250 #10244C-10-108484
+Bull Vac 1250 #10244C-12-108484
+Bull Vac 1250 #10316A-01-109047
+Bull Vac 1250 #10316A-02-109047
+Sase Pre-Sepeartor #262247 (Qty 3)
+Sase Pre-Seperator #260725 (Qty 2)
+Atlas Toyota Forklift
+Atlas Battery Charger
+Husqvarna 967755601 S26 Dust Extractor 110V w/hepa filters 2"x25' hose, wand & Floor Tool (Red) SN 2409677556012120223100072
+Rokamat Cordless Power Trowel 18" metal Blades
+MiniRae 3000 Air Quality Monitoring Device
+Wagner - Moisture test kits
+Wagner - Test Kit with Bluetooth
+Grainger - Standard Duty Industrial Fan 2" Blade
+Salare PFE-1200 Powered Portable Dry Scrubbing Mondule
+Hilti - Breaker TE 3000 AVR
+Wolfpack Nomad 17" Floor Machine w/50 lb weights SN 2334G2149128
+3 x Bosch DH1020VC SDS-Max Inline Demolition Hammers Amazon
+3 x Bosch DH1020VC SDS-Max Inline Demolition Hammers/ Toolsup.Com
+
+//make sure its alphabetical. append to this file then backtrack and check to make sure you got everything. once youre sure let me know and ill come check
+
+// merged alphabetical javascript array
+
+const TOOLS = [
+  "#10 Ermator S26 Vacs",
+  "#10 Ermator S26 Vacs",
+  "2 - Model 700-065 Fans",
+  "3 x Bosch DH1020VC SDS-Max Inline Demolition Hammers Amazon",
+  "3 x Bosch DH1020VC SDS-Max Inline Demolition Hammers/ Toolsup.Com",
+  "4.5\" Angle Grinder",
+  "4\" Cut-off-Grinder",
+  "4\" Makita Grinder",
+  "5 Hippo Mixerss",
+  "5\" Makita Grinder",
+  "5\" Orbital Sander",
+  "18V Blower 2824-20",
+  "18V Rapid Charger",
+  "18V Rotary Hammer Set RHS 2912-22",
+  "18V Vacuum 0970-20",
+  "Angle Grinder 2881-20",
+  "Aramsco Diamatic UltraPro 21 inGrinder  #S4505576",
+  "Aramsco Ru-Vac Wet Vac #92806",
+  "Atlas Battery Charger",
+  "Atlas Toyota Battery",
+  "Atlas Toyota Forklift",
+  "Baier BDN511 Diamond Channel cutter",
+  "BATTERY - FORK LIFT",
+  "Battery 5.1 AH (2 pcs)",
+  "BLADES",
+  "Blast-Trac BDC-99HLG Shot Vaccum #1",
+  "Blast-Trac BDC-99HLG Shot Vaccum#2",
+  "Bull Vac 1250 #10244C-10-108484",
+  "Bull Vac 1250 #10244C-12-108484",
+  "Bull Vac 1250 #10316A-01-109047",
+  "Bull Vac 1250 #10316A-02-109047",
+  "Bull Vacuum (Large)",
+  "BURNISHER",
+  "Caulking Gun",
+  "Charger M12-M18 4859-1812",
+  "Chipping Hammer",
+  "CHIPPING HAMMERS",
+  "Circular Saw 2730-20",
+  "Clarke Buffer",
+  "Cordless Drill 18V",
+  "Demolition Hammer",
+  "DEWALT 40V BLOWER",
+  "DIAMATIC 780 PRO",
+  "DIAMATIC 780 ULTRA",
+  "DIAMATIC D780",
+  "Diamatic Grinder #780",
+  "DOCK LEVELERS",
+  "Electric Concrete Saw",
+  "EQUIPMENT",
+  "Ermator T18000 Vac",
+  "Festool Sander",
+  "GENERATOR",
+  "GRACO PRO210ES - CONNECT STAND",
+  "Grainger - Standard Duty Industrial Fan 2\" Blade",
+  "Hammer Drill",
+  "Hammer Drill 2904-20",
+  "HIGH VISCOSITY AGITATOR",
+  "Hilti - Breaker TE 3000 AVR",
+  "Hilti DGH 130 Grinder",
+  "HOPPER",
+  "HOVER TROWEL",
+  "Husqvarna 967755601 S26 Dust Extractor 110V w/hepa filters 2\"x25' hose, wand & Floor Tool (Red) SN 2409677556012120223100072",
+  "Impact Drive 2953-20",
+  "Indoor air Quality Monitor System",
+  "Insurance Auto Auctions/John Deere Gator",
+  "KwiKool Portable Air Conditioner & Duct Work",
+  "LARUE VACUUM",
+  "Laser Pacific PLS360",
+  "M12 Laser Set 3632-21",
+  "MAKITA 5\" FLOOR GRINDER",
+  "Makita Die Grinder",
+  "Marindus Co #48456 #7066 10in Scarifier",
+  "Metabo 7\" Crack Saw",
+  "Metabo 7\" Grinder",
+  "Milwaukee Combo Kit",
+  "Milwaukee Mixer",
+  "MiniRae 3000 Air Quality Monitoring Device",
+  "MORTAR MIX",
+  "MORTAR MIXER",
+  "MORTAR MIXER 5HP 3 PHASE",
+  "Packout 2 Drawer Box",
+  "Packout Base",
+  "Pallet Jack",
+  "POLISHER - FM1700",
+  "RAE Systems 3000 PID",
+  "RIDING SCRUBBER",
+  "Rokamat Cordless Power Trowel 18\" metal Blades",
+  "Salare #7066 Air Scrubber",
+  "Salare PFE-1200 Powered Portable Dry Scrubbing Mondule",
+  "SASE #247476 Bull Vac 1250",
+  "SASE #260725 Pre-Seperator",
+  "Sase Pre-Sepeartor #262247 (Qty 3)",
+  "Sase Pre-Seperator #260725 (Qty 2)",
+  "Saw Zall 2821-20",
+  "SCAFFOLDING",
+  "SCARIFIER",
+  "SCARIFIER",
+  "SCARIFIER",
+  "Scarifier",
+  "SDS MAX BOSCH HAMMER",
+  "SDS MAX DEMO HAMMER",
+  "Seal Boss Poly Urea Machine",
+  "SEALBOSS JOINTMAS MACHINE",
+  "Shot Blaster",
+  "SkyJack Electric Scissorlift",
+  "SM320",
+  "SMALL TOOLS",
+  "SMALL TOOLS",
+  "Steel Cards for Screed Box",
+  "Stone Grinder",
+  "TEMPEST FAN",
+  "TEMPEST FAN",
+  "Toyota 7HBW23-53635 Electric Pallet Jack",
+  "Toyota Forklift Model 7FBEU20",
+  "Toyota Walkie Pallet",
+  "TROWEL",
+  "Vacuum SASE",
+  "Wagner - Moisture test kits",
+  "Wagner - Test Kit with Bluetooth",
+  "Wall Sanders",
+  "Wolfpack Nomad 17\" Floor Machine w/50 lb weights SN 2334G2149128",
+  "Wood Saw 7\""
+];
